@@ -14,4 +14,24 @@ The script `0-preprocessor` takes a C file, processes it through the preprocesso
 
 ```bash
 export CFILE=main.c
+```
 
+2. Run the script:
+
+```bash
+./0-preprocessor
+```
+
+3. Check the output in the file `c`:
+
+```bash
+tail c
+```
+
+### Example
+
+```bash
+export CFILE=main.c
+./0-preprocessor
+tail c
+```
