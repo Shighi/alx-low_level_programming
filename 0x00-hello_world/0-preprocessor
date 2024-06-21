@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -E -Wall -Werror -Wextra -pedantic -std=gnu89 $CFILE | tail -n 6 > c
+gcc -E $CFILE -o c
