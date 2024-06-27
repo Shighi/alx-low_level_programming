@@ -19,8 +19,8 @@ n = n / i;
 }
 }
 if (n > 2)
-return n;
-return i - 2;
+return (n);
+return (i - 2);
 }
 /**
 * main - entry point
