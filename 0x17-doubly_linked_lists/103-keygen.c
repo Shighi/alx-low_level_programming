@@ -2,7 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* Finds the char with highest ASCII value and returns a derived value */
+/**
+ * find_max_char - Finds the char with highest ASCII value
+ * @input: Input string to search
+ * @size: Length of the input string
+ *
+ * Return: A derived value based on the maximum character
+ */
 int find_max_char(char *input, int size)
 {
 	int max, i;
@@ -19,7 +25,13 @@ int find_max_char(char *input, int size)
 	return (result & 63);
 }
 
-/* Calculates sum of squared ASCII values and returns a derived value */
+/**
+ * sum_of_squares - Calculates sum of squared ASCII values
+ * @input: Input string to process
+ * @size: Length of the input string
+ *
+ * Return: A derived value based on the sum of squares
+ */
 int sum_of_squares(char *input, int size)
 {
 	int sum = 0, i;
@@ -29,7 +41,12 @@ int sum_of_squares(char *input, int size)
 	return (((unsigned int)sum ^ 239) & 63);
 }
 
-/* Generates a pseudo-random number based on input */
+/**
+ * generate_random - Generates a pseudo-random number based on input
+ * @input: Input string to use as seed
+ *
+ * Return: A derived random value
+ */
 int generate_random(char *input)
 {
 	int result = 0, i;
@@ -39,7 +56,13 @@ int generate_random(char *input)
 	return (((unsigned int)result ^ 229) & 63);
 }
 
-/* Main function: generates key based on username */
+/**
+ * main - Generates key based on username
+ * @argc: Argument count
+ * @argv: Argument vector
+ *
+ * Return: 0 on success, 1 on failure
+ */
 int main(int argc, char **argv)
 {
 	char key[7];
@@ -55,23 +78,18 @@ int main(int argc, char **argv)
 		printf("Usage: %s username\n", argv[0]);
 		return (1);
 	}
-
 	len = strlen(argv[1]);
 	key[0] = ((char *)lookup)[(len ^ 59) & 63];
-
 	for (sum = i = 0; i < len; i++)
 		sum += argv[1][i];
 	key[1] = ((char *)lookup)[(sum ^ 79) & 63];
-
 	for (sum = 1, i = 0; i < len; i++)
 		sum *= argv[1][i];
 	key[2] = ((char *)lookup)[(sum ^ 85) & 63];
-
 	key[3] = ((char *)lookup)[find_max_char(argv[1], len)];
 	key[4] = ((char *)lookup)[sum_of_squares(argv[1], len)];
 	key[5] = ((char *)lookup)[generate_random(argv[1])];
 	key[6] = '\0';
-
 	printf("%s\n", key);
 	return (0);
 }
