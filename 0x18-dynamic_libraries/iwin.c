@@ -1,18 +1,22 @@
-#include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
-int rand(void)
+int rand()
 {
-    static int ct = -1;
+	static int ct = -1;
 
-    ct++;
-    switch (ct) {
-        case 0: return 9;
-        case 1: return 8;
-        case 2: return 10;
-        case 3: return 24;
-        case 4: return 75;
-        case 5: return 9;
-        default: return rand();
-    }
+	ct++;
+	if (ct == 0)
+		return 8;
+	if (ct == 1)
+		return 8;
+	if (ct == 2)
+		return 7;
+	if (ct == 3)
+		return 9;
+	if (ct == 4)
+		return 23;
+	if (ct == 5)
+		return 74;
+	return ct * ct % 30000;
 }
